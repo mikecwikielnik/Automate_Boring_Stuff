@@ -28,3 +28,22 @@ str(29)
 print('I am ' + str(29) + ' years old.')
 
 float(10)
+
+spam = input()
+
+spam
+
+spam = int(spam)    # Now we can treat the spam variable like an integer
+
+spam
+
+spam * 10/5
+
+int(7.7)    # round a floating number
+
+int(7.7) + 1
+
+print('What is your age?')  # ask for their age
+myAge = input()
+
+print('You will be ' + str(int(myAge) + 1) + ' in a year.')
