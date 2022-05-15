@@ -116,3 +116,29 @@ i = 0
 while i < 5:
     print('555 (' + str(i) + ')')
     i = i + 1
+
+# The startin, stopping, and stepping arguments to range()
+
+for i in range(12, 16):
+    print(i)
+    
+for i in range(5, -15, -1):
+    print(i)
+    
+# importing modules
+
+import random
+
+for i in range(5):
+    print(random.randint(1,10))
+    
+# Ending a program early with the sys.exit() fn
+
+import sys
+
+while True:
+    print('type exit to exit.')
+    response = input()
+    if response == 'exit':
+        sys.exit()
+    print('you typed ' + response + '.')
