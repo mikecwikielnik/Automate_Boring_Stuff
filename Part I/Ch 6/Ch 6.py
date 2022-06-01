@@ -9,6 +9,7 @@ Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 129). No St
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 130). No Starch Press. Kindle Edition. 
 
 from http.cookiejar import MozillaCookieJar
+from sys import pycache_prefix
 
 
 print("Hello there!\nHow are you?\nI\'m doing fine. ")
@@ -71,3 +72,50 @@ sep
 after   #The partition() method is useful for splitting a string whenever you need the parts before, including, and after a particular separator string.
 
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 140). No Starch Press. Kindle Edition. 
+
+# Justifying Text with the rjust(), ljust(), and center() Methods
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 140). No Starch Press. Kindle Edition. 
+
+'Hello'.rjust(10)
+
+'Hello, World!'.ljust(20)
+
+'Hello'.rjust(20, '*')
+
+'Whats up people!?'.center(35, '^')
+
+
+# Removing Whitespace with the strip(), rstrip(), and lstrip() Methods
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 142). No Starch Press. Kindle Edition. 
+
+spam = '     Hello, world     '
+spam.strip()
+spam.lstrip()
+spam.rstrip()
+
+spam = 'SpamSpamBaconSpamEggsSpamSpam'
+spam.strip('ampS')
+
+# Numeric Values of Characters with the ord() and chr() Functions
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 143). No Starch Press. Kindle Edition. 
+
+ord('A')
+ord('4')
+ord('!')
+chr(65)
+
+ord('A') < ord('B')
+chr(ord('A'))
+chr(ord('A')+1)
+
+# Copying and Pasting Strings with the pyperclip Module
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 143). No Starch Press. Kindle Edition. 
+
+import pyperclip
+
+pyperclip.copy('Hello World!')
+pyperclip.paste()
