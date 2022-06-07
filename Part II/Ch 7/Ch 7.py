@@ -7,6 +7,7 @@ CH 7
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 165). No Starch Press. Kindle Edition. 
 
 import re
+from tkinter.messagebox import NO
 
 from django.forms import model_to_dict
 
@@ -145,3 +146,41 @@ xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids, 7 swans,
 
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 173). No Starch Press. Kindle Edition. 
 
+vowelRegex = re.compile(r'[aeiouAEIOU]')
+vowelRegex.findall('RoboCop eats baby food. Baby Food.')
+
+consonantRegex = re.compile(r'[^aeiouAEIOU]')   # Negative Character Class
+consonantRegex.findall('RoboCop eats baby food. Baby Food.')
+
+# The Caret and Dollar Sign Characters
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 174). No Starch Press. Kindle Edition. 
+
+beginsWithHello = re.compile(r'Hello')
+beginsWithHello.search('Hello, world!')
+beginsWithHello.search('He said hello') == None
+
+endswithNumber = re.compile('r\d$')
+endswithNumber.search('Your number is 42')
+endswithNumber.search('Your number is forty two.') == None
+
+wholeStringIsNum = re.compile(r'^\d+$')
+wholeStringIsNum.search('1234567890')
+wholeStringIsNum.search('12345xyz67890') == None
+wholeStringIsNum.search('12 34567890') == None
+
+# The Wildcard Character
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 175). No Starch Press. Kindle Edition. 
+
+atRegex = re.compile(r'.at')
+atRegex.findall('The cat in the hat sat on the flat mat.')
+
+# Matching Everything with Dot-Star
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 175). No Starch Press. Kindle Edition. 
+
+nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+mo = nameRegex.search('First Name: Al Last Name: Sweigart')
+mo.group(1)
+mo.group(2)
