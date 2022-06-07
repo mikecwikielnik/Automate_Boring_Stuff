@@ -110,3 +110,38 @@ mo2 == None
 
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 171). No Starch Press. Kindle Edition. 
 
+# Greedy
+
+greedyHaRegex = re.compile(r'(Ha){3,5}')
+mo1 = greedyHaRegex.search('HaHaHaHaHa')
+mo1.group()
+
+nongreedyHaRegex = re.compile(r'(Ha){3,5}?')
+mo2 = nongreedyHaRegex.search('HaHaHaHaHa')
+mo2.group()
+
+# The findall() Method
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 171). No Starch Press. Kindle Edition. 
+
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+mo = phoneNumRegex.search('Cell: 415-555-9999 Work: 212-555-2222')
+mo.group()
+
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')   # has no groups
+phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-2222')
+
+phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)') # has groups
+phoneNumRegex.findall('Cell: 412-555-9999 Work: 212-555-2222')
+
+# Character Classes
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 172). No Starch Press. Kindle Edition. 
+
+xmasRegex = re.compile(r'\d+\s\w+')
+xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids, 7 swans, 6 geese, 5 rings, 4 birds, 3 hens, 2 doves, 1 partridge')
+
+# Making Your Own Character Classes
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 173). No Starch Press. Kindle Edition. 
+
