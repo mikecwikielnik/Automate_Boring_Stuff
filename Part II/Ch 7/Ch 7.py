@@ -218,3 +218,28 @@ robocop.search('Al, why does your programming book talk about robocop so much?')
 
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 178). No Starch Press. Kindle Edition. 
 
+namesRegex =  re.compile(r'Agent \w+')
+namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.')
+
+agentNamesRegex = re.compile(r'Agent (\w)\w*')
+agentNamesRegex.sub(r'\1****', 'Agent Alice told Agent Karen that Agent Eve knew Agent Bob was a double agent.')
+
+# Managing Complex Regexes
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 178). No Starch Press. Kindle Edition. 
+
+phoneRegex = re.compile(r'''(
+    (\d{3}|\(\{3}\))?
+    (\s|-|\.)?
+    \d{3}
+    (\s|-|\.)
+    \d{4}
+    (\s*(ext|x|ext.)\s*\d{2,5})?
+    )''', re.VERBOSE)
+
+# Combining re.IGNORECASE, re.DOTALL, and re.VERBOSE
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 179). No Starch Press. Kindle Edition. 
+
+someRegexValue = re.compile('foo', re.IGNORECASE | re.DOTALL)
+someRegexValue = re.compile('foo', re.IGNORECASE | re.DOTALL | re.VERBOSE)
