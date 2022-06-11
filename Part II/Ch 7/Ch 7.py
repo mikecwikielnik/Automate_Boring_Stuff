@@ -1,5 +1,7 @@
 """
 CH 7
+
+Pattern Matching with RegEx
 """
 
 # Creating Regex Objects
@@ -184,3 +186,35 @@ nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
 mo = nameRegex.search('First Name: Al Last Name: Sweigart')
 mo.group(1)
 mo.group(2)
+
+nongreedyHaRegex = re.compile(r'<.*?>')
+mo = nongreedyHaRegex.search('<To serve man> for dinner.>')
+mo.group()
+
+greedyRegex = re.compile(r'<.*>')
+mo = greedyRegex.search('<To serve man> for dinner.>')
+mo.group()
+
+# Matching Newlines with the Dot Character
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 176). No Starch Press. Kindle Edition. 
+
+noNewlineRegex = re.compile('.*')
+noNewlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+
+newlineRegex = re.compile('.*', re.DOTALL)
+newlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+
+# Case-Insensitive Matching
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 177). No Starch Press. Kindle Edition. 
+
+robocop = re.compile(r'robocop', re.I)
+robocop.search('RoboCop is part man, part machine, all cop.').group()
+robocop.search('ROBOCOP protects the innocent.').group()
+robocop.search('Al, why does your programming book talk about robocop so much?').group()
+
+# Substituting Strings with the sub() Method
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 178). No Starch Press. Kindle Edition. 
+
