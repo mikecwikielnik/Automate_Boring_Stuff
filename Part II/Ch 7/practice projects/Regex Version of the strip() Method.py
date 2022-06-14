@@ -11,6 +11,16 @@ Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 186). No St
 
 import re
 
+# sample
 spaceRegex = re.compile('\s+')
 spaceRegex.sub('**', '   Agent Alice gave away the documents   ')
 
+def spaceReplace(i, n):
+    regex = re.compile('\s+')
+    southPark=regex.sub(i, n)
+    print(southPark)
+    
+censored = ''
+string = ' Cartman says he is going home '
+
+spaceReplace(censored, string) 
