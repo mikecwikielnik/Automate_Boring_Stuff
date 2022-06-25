@@ -125,3 +125,55 @@ p = Path('C:/Users/mikec/Desktop')
 for textFilePathObj in p.glob('*.txt'):
     print(textFilePathObj)  # Prints the Path object as a string
     
+# The File Reading/Writing Process
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 215). No Starch Press. Kindle Edition. 
+
+from pathlib import Path 
+
+p = Path('spam.txt')    # Path object methods only provide basic methods
+p.write_text('hello, world!')
+p.read_text()
+
+# Opening Files with the open() Function
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 217). No Starch Press. Kindle Edition. 
+
+helloFile = open('C:/Users/mikec/Google Drive/Py_files/Python/Automate the Boring Stuff, 2nd Ed/Part II/Ch 9/spam.txt')
+
+
+# Reading the Contents of Files
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 217). No Starch Press. Kindle Edition. 
+
+helloContent = helloFile.read()
+helloContent
+
+# Alternatively, you can use the readlines() method to get a list of string values from the file, one string for each line of text. 
+
+# For example, create a file named sonnet29.txt in the same directory as hello.txt and write the following text in it:
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 218). No Starch Press. Kindle Edition. 
+
+p = Path('sonnet29.txt')
+p.write_text('When, in disgrace with fortune and men\'s eyes, I all alone between my outcast state, And trouble deaf heaven with my bootless cries, And look upon myself and curse my fate,')
+
+sonnetFile = open('C:/Users/mikec/Google Drive/Py_files/Python/Automate the Boring Stuff, 2nd Ed/Part II/Ch 9/sonnet29.txt')
+sonnetFile.readlines()
+
+# Writing to Files
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 218). No Starch Press. Kindle Edition. 
+
+baconFile = open('bacon.txt', 'w')
+baconFile.write('Hello, world!\n')
+baconFile.close()
+baconFile = open('bacon.txt', 'a')  # append
+baconFile.write('Bacon is not a vegetable.')
+baconFile.close()
+baconFile = open('bacon.txt')
+content = baconFile.read()
+baconFile.close()
+print(content)
+
+
