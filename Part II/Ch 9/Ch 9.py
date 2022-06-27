@@ -7,6 +7,7 @@ Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 201). No St
 from fileinput import hook_encoded
 from pathlib import Path
 from struct import calcsize
+from tarfile import _Fileobj
 from turtle import home
 
 Path('spam', 'bacon', 'eggs')
@@ -176,4 +177,41 @@ content = baconFile.read()
 baconFile.close()
 print(content)
 
+# Saving Variables with the shelve Module
 
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 219). No Starch Press. Kindle Edition. 
+
+import shelve
+
+shelfFile = shelve.open('mydata')
+cats = ['Zophie', 'Pooka', 'Simon']
+shelfFile['cats'] = cats
+shelfFile.close()
+
+shelfFile = shelve.open('mydata')
+type(shelfFile)
+shelfFile['cats']
+shelfFile.close()
+
+shelfFile = shelve.open('mydata')
+list(shelfFile.keys())
+list(shelfFile.values())
+shelfFile.close()   
+
+# Saving Variables with the pprint.pformat() Function
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 220). No Starch Press. Kindle Edition. 
+
+import pprint
+
+cats = [{'name': 'zophie', 'desc': 'chubby',}, {'name': 'pooka', 'desc': 'fluffy'}]
+pprint.pformat(cats)
+fileObj = open('myCats.py', 'w')
+fileObj.write('cats= ' + pprint.pformat(cats) + '\n')
+fileObj.close()
+
+import myCats
+
+myCats.cats
+myCats.cats[0]
+myCats.cats[0]['name']
