@@ -16,6 +16,7 @@ Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 231). No St
 
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 232). No Starch Press. Kindle Edition. 
 
+from doctest import Example
 import imp
 import shutil, os
 from pathlib import Path
@@ -53,7 +54,7 @@ for filename in Path.home().glob('*.rxt'):
 baconFile = open('bacon.txt', 'a')  # Creates the file
 baconFile.write('Bacon is not a vegetable')
 baconFile.close()
-send2trash.send2trash('bacon.txt')
+# send2trash.send2trash('bacon.txt')
 
 # Walking a Directory Tree
 
@@ -71,3 +72,45 @@ for folderName, subfolders, filenames in os.walk('C:\\delicious'):
         print('FILE INSIDE ' + folderName + ': ' + filename)
         
     print('')
+    
+# Reading ZIP Files
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 238). No Starch Press. Kindle Edition. 
+
+import zipfile, os
+from pathlib import Path
+
+p = Path.home()
+exampleZip = zipfile.ZipFile(p / 'example.zip')
+exampleZip.namelist()
+spamInfo = exampleZip.getinfo('spam.txt')
+spamInfo.file_size
+spamInfo.compress_size
+f'Compressed file is {round(spamInfo.file_size / spamInfo.compress_size, 2)}x smaller!'
+exampleZip.close()
+
+# Extracting from ZIP Files
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 238). No Starch Press. Kindle Edition. 
+
+import zipfile, os
+from pathlib import Path
+p = Path.home()
+exampleZip = zipfile.ZipFile(p / 'example.zip')
+exampleZip.extractall()
+exampleZip.close()
+
+exampleZip.extract('spam.txt')
+exampleZip.extract('spam.txt', 'C:\\some\\new\\folders')
+exampleZip.close()
+
+# Creating and Adding to ZIP Files
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 239). No Starch Press. Kindle Edition. 
+
+import zipfile
+
+newZip = zipfile.ZipFile('new.zip', 'w')
+newZip.write('spam.txt', compress_type = zipfile.ZIP_DEFLATED)
+newZip.close()
+
