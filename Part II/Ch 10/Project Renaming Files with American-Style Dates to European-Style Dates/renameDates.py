@@ -33,12 +33,14 @@ for amerFilename in os.listdir('.'):
     yearPart = mo.group(6)
     afterPart = mo.group(8)
 
-# TODO: Skip files without a date
+    # Form the European-style filename
+    euroFilename = beforePart + dayPart + '-' + monthPart + '-' + yearPart + afterPart
 
-# TODO: Get the different parts of the filename
+    # Get the full, absolute file paths
+    absWorkingDir = os.path.abspath('.')
+    amerFilename = os.path.join(absWorkingDir, amerFilename)
+    euroFilename = os.path.join(absWorkingDir, euroFilename)
 
-# TODO: Form the European-style filenamme
-
-# TODO: Get the full, absolute file paths
-
-# TODO: Rename the files. 
+    # Rename the files. 
+    print(f'Renaming "{amerFilename}" ro "{euroFilename}"...')
+    #shutil.move(amerFilename, euroFilename)    # uncomment after testing 
