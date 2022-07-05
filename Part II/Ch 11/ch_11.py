@@ -43,3 +43,26 @@ switchLights(market_2nd)
 # You got the right error which helps the program fail early
 # thus saving time on debugging
 
+# Logging 
+
+# Using the logging Module
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 256). No Starch Press. Kindle Edition. 
+
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(leveltime)s - %(message)s')
+
+logging.debug('Start of program')
+
+def factorial(n):
+    logging.debug('Start of factorial(%s%%)' % (n))
+    total = 1
+    for i in range(n + 1):
+        total *= i
+        logging.debug('i is ' + str(i) + ', total is ' + str(total))
+    logging.debug('End of factorial(%s%%)' % (n))
+    return total
+
+print(factorial(5))
+logging.debug('End of program')
