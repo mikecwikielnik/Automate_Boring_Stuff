@@ -46,3 +46,50 @@ playFile.close()
 
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 279). No Starch Press. Kindle Edition. 
 
+import requests, bs4
+
+res = requests.get('https://nostarch.com')
+res.raise_for_status()
+noStarchSoup = bs4.BeautifulSoup(res.text, 'html.parser')
+type(noStarchSoup)
+
+exampleFile = open('example.html')
+exampleSoup = bs4.BeautifulSoup(exampleFile, 'html.parser')
+type(exampleSoup)
+
+# Finding an Element with the select() Method
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 280). No Starch Press. Kindle Edition. 
+
+import bs4
+
+exampleFile = open('example.html')
+exampleSoup = bs4.BeautifulSoup(exampleFile.read(), 'html.parser')
+elems = exampleSoup.select('#author')
+type(elems) # elems is a list of Tag objects
+len(elems)
+type(elems[0])
+str(elems[0])   # The Tag object as a string
+elems[0].getText()
+elems[0].attrs
+
+pElems = exampleSoup.select('p')
+str(pElems[0])
+pElems[0].getText()
+str(pElems[1])
+pElems[1].getText()
+str(pElems[2])
+pElems[2].getText()
+
+# Getting Data from an Element’s Attributes
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 282). No Starch Press. Kindle Edition. 
+
+import bs4
+
+soup = bs4.BeautifulSoup(open('example.html'), 'html.parser')
+spanElem = soup.select('span')[0]
+str(spanElem)
+spanElem.get('id')
+spanElem.get('some_nonexistent_addr') == None
+spanElem.attrs
