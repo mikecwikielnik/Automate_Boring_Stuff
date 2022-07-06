@@ -41,3 +41,8 @@ playFile = open('RomeoAndJuliet.txt', 'wb')
 for chunk in res.iter_content(100000):
     playFile.write(chunk)
 playFile.close()
+
+# Parsing HTML with the bs4 Module
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 279). No Starch Press. Kindle Edition. 
+
