@@ -93,3 +93,67 @@ str(spanElem)
 spanElem.get('id')
 spanElem.get('some_nonexistent_addr') == None
 spanElem.attrs
+
+# Starting a selenium-Controlled Browser
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 291). No Starch Press. Kindle Edition. 
+
+from selenium import webdriver
+
+browser = webdriver.Chrome()
+type(browser)
+browser.get('espn.com')
+
+browser = webdriver.Chrome()
+browser.get('espn.com')
+try:
+    elem = browser.find_element_by_class_name(' cover-thumb')
+    print('Found <%s> element with that class name!' % (elem.tag_name))
+except:
+    print('Was not able to find an element with that name.')
+    
+# Clicking the Page
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 295). No Starch Press. Kindle Edition. 
+
+from selenium import webdriver
+browser = webdriver.Chrome()
+browser.get('espn.com')
+linkElem = browser.find_element_by_link_text('Read Online for Free.')
+type(linkElem)
+
+# Filling Out and Submitting Forms
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 295). No Starch Press. Kindle Edition. 
+
+from selenium import webdriver  
+
+browser = webdriver.Chrome()
+browser.get('espn.com')
+userElem = browser.find_element_by_id('user name')
+userElem.send_keys('your_real_username_here')
+
+passwordElem = browser.find_element_by_id('user_pass')
+passwordElem.send_keys('password_here')
+passwordElem.submit()
+
+# Sending Special Keys
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 296). No Starch Press. Kindle Edition. 
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+browser = webdriver.Chrome()
+browser.get('espn.com')
+htmlElem = browser.find_element_by_tag('html')
+htmlElem.send_keys(Keys.END)    # scrolls to bottom
+htmlElem.send_keys(Keys.HOME)   # scrolls to top
+
+# Clicking Browser Buttons
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 297). No Starch Press. Kindle Edition. 
+
+browser.back()  # back button
+browser.forward()   # forward button
+browser.refresh()   # refresh/reload button
+browser.quit()  # close button
