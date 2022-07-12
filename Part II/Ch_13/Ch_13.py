@@ -97,3 +97,26 @@ list(sheet.columns)[1]
 for cellObj in list(sheet.columns)[1]:
     print(cellObj.value)
     
+# Creating and Saving Excel Documents
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 313). No Starch Press. Kindle Edition. 
+
+import openpyxl
+
+wb = openpyxl.Workbook()    # Create a blank workbook
+wb.sheetnames   # It starts with one sheet.
+sheet = wb.active
+sheet.title
+sheet.title = 'Spam Bacon Eggs Sheet'   # Change title
+wb.sheetnames
+
+import openpyxl
+wb = openpyxl.load_workbook('example.xlsx')
+sheet = wb.active
+sheet.title = 'Spam Soam Spam'
+wb.save('example_copy.xlsx')    # Save the workbook
+
+# Creating and Removing Sheets
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 314). No Starch Press. Kindle Edition. 
+
