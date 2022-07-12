@@ -120,3 +120,46 @@ wb.save('example_copy.xlsx')    # Save the workbook
 
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 314). No Starch Press. Kindle Edition. 
 
+import openpyxl
+wb = openpyxl.Workbook()
+wb.sheetnames
+wb.create_sheet()   # Add a new sheet
+wb.sheetnames
+# Create a new sheet at index 0.
+wb.create_sheet(index=0, title='First Sheet')
+wb.sheetnames
+wb.create_sheet(index=2, title='Middle Sheet')
+wb.sheetnames
+
+wb.sheetnames
+del wb['Middle Sheet']
+del wb['Sheet1']
+wb.sheetnames
+
+wb.save('example_copy.xlsx')
+
+# Writing Values to Cells
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 314). No Starch Press. Kindle Edition. 
+
+import openpyxl
+
+wb = openpyxl.Workbook()
+sheet = wb['Sheet']
+sheet['A1'] = 'Hello, world!'   # Edit the cell's value
+sheet['A1'].value
+
+# Setting the Font Style of Cells
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 318). No Starch Press. Kindle Edition. 
+
+from openpyxl.styles import Font
+
+import openpyxl
+from openpyxl.styles import Font
+wb = openpyxl.Workbook()
+sheet = wb['Sheet']
+italic24font = Font(size=24, italic=True)   # Create a font
+sheet['A1'].font = italic24font # Apply the font to A1
+sheet['A1'] = 'Hello, world!'
+wb.save('styles.xlsx')
