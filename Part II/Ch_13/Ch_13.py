@@ -4,6 +4,7 @@ WORKING WITH EXCEL SPREADSHEETS
 Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 301). No Starch Press. Kindle Edition. 
 """
 
+from tkinter import font
 import openpyxl
 
 # Opening Excel Documents with OpenPyXL
@@ -163,3 +164,97 @@ italic24font = Font(size=24, italic=True)   # Create a font
 sheet['A1'].font = italic24font # Apply the font to A1
 sheet['A1'] = 'Hello, world!'
 wb.save('styles.xlsx')
+
+# Font Objects
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 318). No Starch Press. Kindle Edition. 
+
+import openpyxl
+
+from openpyxl.styles import Font 
+wb = openpyxl.Workbook()
+sheet = wb['Sheet']
+
+fontObj1 = Font(name='Times New Roman', bold=True)
+sheet['A1'].font = fontObj1
+sheet['A1'] = 'Bold Times New Roman'
+
+fontObj2 = Font(size=24, italic=True)
+sheet['B3'].font = fontObj2
+sheet['B3'] = '24 pt Italic'
+
+wb.save('styles.xlsx')
+
+# Formulas
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 319). No Starch Press. Kindle Edition. 
+
+sheet['B9'] = '=SUM(B1:B8)'
+
+import openpyxl
+
+wb = openpyxl.Workbook()
+sheet = wb.active
+sheet['A1'] = 200
+sheet['A2'] = 300
+sheet['A3'] = '=SUM(A1:A2)' # Set the formula 
+wb.save('writeFormula.xlsx')
+
+# Setting Row Height and Column Width
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 321). No Starch Press. Kindle Edition. 
+
+import openpyxl
+wb = openpyxl.Workbook()
+sheet = wb.active
+sheet['A1'] = 'Tall row'
+sheet['B2'] = 'Wide column'
+# Set the height and width:
+sheet.row_dimensions[1].height = 70
+sheet.column_dimensions['B'].width = 20
+wb.save('dimensions.xlsx')
+
+# Merging and Unmerging Cells
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 322). No Starch Press. Kindle Edition. 
+
+# merge
+
+import openpyxl
+wb = openpyxl.Workbook()
+sheet = wb.active
+sheet.merge_cells('A1:D3') # Merge all these cells
+sheet['A1'] = 'Twelve cells merged together'
+sheet.merge_cells('C5:D5')  # Merge these two cells
+sheet['C5'] = 'Two merged cells.'
+wb.save('merged.xlsx')
+
+# unmerge
+
+import openpyxl
+wb = openpyxl.load_workbook('merged.xlsx')
+sheet = wb.active
+sheet.unmerge_cells('A1:D3')    # Split these cells up
+sheet.unmerge_cells('C5:D5')
+wb.save('merged.xlsx')
+
+# Charts
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 324). No Starch Press. Kindle Edition. 
+
+import openpyxl
+wb = openpyxl.Workbook()
+sheet = wb.active
+for i in range(1, 11):  # create some data in column A
+    sheet['A' + str(i)] = i
+    
+refObj = openpyxl.chart.References(sheet, min_col=1, min_row=1, max_col=1,
+                                   max_row=10)
+seriesObj = openpyxl.chart.Series(refObj, title='First series')
+
+chartObj = openpyxl.chart.BarChart()
+chartObj.title = 'My Chart'
+chartObj.append(seriesObj)
+
+sheet.add_chart(chartObj, 'C5')
+wb.save('sampleChart.xlsx')
