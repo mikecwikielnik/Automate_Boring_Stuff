@@ -95,3 +95,88 @@ pdfWriter.write(resultPdfFile)
 minutesFile.close()
 resultPdfFile.close()
 
+# Reading Word Documents
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 359). No Starch Press. Kindle Edition. 
+
+import docx
+
+doc = docx.Document('demo.docx')
+len(doc.paragraphs)
+doc.paragraphs[0].text
+doc.paragraphs[1].text
+len(doc.paragraphs[1].runs)
+doc.paragraphs[1].runs[0].text
+doc.paragraphs[1].runs[1].text
+doc.paragraphs[1].runs[2].text 
+doc.paragraphs[1].runs[3].text 
+doc.paragraphs[1].runs[4].text 
+
+import readDocx
+
+print(readDocx.getText('demo.docx'))
+
+# Run Attributes
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 362). No Starch Press. Kindle Edition. 
+
+import docx
+
+doc = docx.Document('demo.docx')
+doc.paragraphs[0].text 
+doc.paragraphs[0].style # The exact id may be different:
+doc.paragraphs[0].style = 'Normal'
+doc.paragraphs[1].text 
+(doc.paragraphs[1].runs[0].text, doc.paragraphs[1].runs[1].text, 
+ doc.paragraphs[1].runs[2].text, doc.paragraphs[1].runs[3].text,
+ doc.paragraphs[1].runs[4].text)
+doc.paragraphs[1].runs[0].style = 'QuoteChar'
+doc.paragraphs[1].runs[1].underline = True
+doc.paragraphs[1].runs[3].underline = True
+# doc.paragraphs[1].runs[4].imprint = True 
+doc.save('restyled.docx')
+
+# Writing Word Documents
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 364). No Starch Press. Kindle Edition. 
+
+import docx 
+
+doc = docx.Document()
+doc.add_paragraph('Hello, world!')
+paraObj1 = doc.add_paragraph('This is the second paragraph')
+paraObj2 = doc.add_paragraph('This is another paragraph')
+paraObj1.add_run(' Theis text is being added to the second paragraph')
+doc.save('helloworld.docx')
+
+doc.add_paragraph('Hello, world!', 'Title')
+
+# Adding Headings
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 366). No Starch Press. Kindle Edition. 
+
+doc = docx.Document()
+doc.add_heading('Header 0', 0)
+doc.add_heading('Header 1', 1)
+doc.add_heading('Header 2', 2)
+doc.add_heading('Header 3', 3)
+doc.add_heading('Header 4', 4)
+doc.save('headings.docx')
+
+# Adding Line and Page Breaks
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 366). No Starch Press. Kindle Edition. 
+
+doc = docx.Document()
+doc.add_paragraph('THis is on the first page!')
+doc.paragraphs[0].runs[0].add_break(docx.enum.text.WD_BREAK.PAGE)
+doc.add_paragraph('This is the second page!')
+doc.save('twoPage.docx')
+
+# Adding Pictures
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 367). No Starch Press. Kindle Edition. 
+
+doc.add_picture('zophie.png', width=docx.shared.Inches(1),
+                 height=docx.shared.Cm(4))
+
