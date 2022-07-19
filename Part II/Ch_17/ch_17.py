@@ -45,3 +45,14 @@ for i in range(3):
     print('Tock')
     time.sleep(2)
 
+# Rounding Numbers
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 392). No Starch Press. Kindle Edition. 
+
+import time
+
+now = time.time()
+now
+round(now, 2)
+round(now, 4)
+round(now)
