@@ -132,4 +132,14 @@ datetime.datetime.strptime('2019/10/21 16:29:00', '%Y/%m/%d %H:%M:%S')
 datetime.datetime.strptime("October of '19", "%B of '%y")   # notice small y
 datetime.datetime.strptime("November of '63", "%B of '%y")
 
+# Passing Arguments to the Thread’s Target Function
 
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 402). No Starch Press. Kindle Edition. 
+
+print('Cats', 'Dogs', 'Frogs', sep=' & ')
+
+import threading
+
+threadObj = threading.Thread(target=print, args=['Cats', 'Dogs', 'Frogs'],
+                             kwargs={'sep': ' & '})
+threadObj.start()
