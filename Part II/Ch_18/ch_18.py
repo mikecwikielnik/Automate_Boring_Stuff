@@ -6,7 +6,9 @@ Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 415). No St
 
 from concurrent.futures import thread
 from email import message, message_from_string
+from email.errors import MessageParseError
 from email.headerregistry import UniqueAddressHeader
+from multiprocessing.spawn import import_main_path
 import ezgmail, os
 
 os.chdir(r'C:\path\to\credentials_json_file')
@@ -139,3 +141,88 @@ rawMessages = imapObj.fetch([40041], ['BODY[]', 'FLAGS'])
 # message.html_part.get_payload().decode(message.html_part.chartset)
 # imapObj.logout()
 
+# Connecting to an IMAP Server
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 425). No Starch Press. Kindle Edition. 
+
+import imapclient
+
+imapObj = imapclient.IMAPClient('imap.example.com', ssl=True)
+
+# Logging In to the IMAP Server
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 426). No Starch Press. Kindle Edition. 
+
+imapObj.login('none@none.com', 'password')
+
+# Searching for Email
+
+# Selecting a Folder
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 426). No Starch Press. Kindle Edition. 
+
+import pprint
+pprint.pprint(imapObj.list_folders())
+
+imapObj.select_folder('INBOX', readonly=True)
+
+# Performing the Search
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 427). No Starch Press. Kindle Edition. 
+
+UIDs = imapObj.search(['SINCE 05-Jul-2019'])
+UIDs
+
+# Size Limits
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 429). No Starch Press. Kindle Edition. 
+
+import imaplib
+
+imaplib._MAXLINE = 10000000
+
+# Fetching an Email and Marking It as Read
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 430). No Starch Press. Kindle Edition. 
+
+rawMessages = imapObj.fetch(UIDs, ['BODY[]'])
+import pprint
+pprint.pprint(rawMessages)
+
+# Getting Email Addresses from a Raw Message
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 431). No Starch Press. Kindle Edition. 
+
+# import pyzmail
+# message = pyzmail.PyzMessage.factory(rawMessages[40041][b'BODY[]'])
+
+message.get_subject()
+message.get_addresses('from')
+message.get_addresses('to')
+message.get_addresses('cc')
+message.get_addresses('bcc')
+
+# Getting the Body from a Raw Message
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 431). No Starch Press. Kindle Edition. 
+
+message.text_part != None
+message.text_part.get_payload().decode(message.text_part.charset)
+message.html_part != None
+message.html_part.get_payload().decode(message.html_part.charset)
+
+# Deleting Emails
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 432). No Starch Press. Kindle Edition. 
+
+imapObj.select_folder('INBOX', readonly=False)
+UIDs = imapObj.search(['ON 09-Jul-2019'])
+UIDs
+imapObj.delete_messages(UIDs)
+imapObj.expunge()
+
+# Disconnecting from the IMAP Server
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 433). No Starch Press. Kindle Edition. 
+
+imapObj.logout()
