@@ -226,3 +226,31 @@ imapObj.expunge()
 # Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 433). No Starch Press. Kindle Edition. 
 
 imapObj.logout()
+
+# Sending Text Messages
+
+# Sweigart, Al. Automate the Boring Stuff with Python, 2nd Edition (p. 439). No Starch Press. Kindle Edition. 
+
+# from twilio.rest import Client  
+
+# accountSID = 'AC123'
+# authToken = '1234'
+# twilioCli = Client(accountSID, authToken)
+# myTwilioNumber = '+16175550123'
+# myCellPhone = '+16175558888'
+# message = twilioCli.messages.create(body='10 percent off a 3-pair package.', from_=myTwilioNumber, to=myCellPhone)
+
+
+message.to
+message.from_ 
+message.body
+
+message.status
+message.date_created
+message.date_sent == None
+
+message.sid
+# updatedMessage = twilioCli.messages.get(message.sid)
+# updatedMessage.status
+# updatedMessage.date_sent
+
